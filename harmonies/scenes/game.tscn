@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpu5v8eh20i7u"]
+[gd_scene load_steps=4 format=3 uid="uid://cpu5v8eh20i7u"]
 
 [ext_resource type="PackedScene" uid="uid://ceu4dncl3d37n" path="res://scenes/player.tscn" id="1_4vix0"]
+[ext_resource type="PackedScene" uid="uid://ca4ujagx516qn" path="res://scenes/platform_grass.tscn" id="2_pqklf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3crph"]
 distance = -30.0
@@ -16,3 +17,6 @@ distance = -30.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(7, 153)
 shape = SubResource("WorldBoundaryShape2D_3crph")
+
+[node name="PlatformGrass" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(180, -83)

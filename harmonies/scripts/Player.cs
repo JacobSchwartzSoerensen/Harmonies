@@ -4,7 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	private float _speed = 400.0f;
-	private float _jumpSpeed = -1200.0f;
+	private float _jumpSpeed = -1500.0f;
 	public float Gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle() * 3;
 	
 	public override void _Ready()
