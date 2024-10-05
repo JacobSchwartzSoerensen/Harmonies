@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceu4dncl3d37n"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_48up8"]
+[ext_resource type="Texture2D" uid="uid://dd78obnmyf41v" path="res://assets/sprites/gnome.png" id="1_tgnef"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7snna"]
+atlas = ExtResource("1_tgnef")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lflrr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7snna")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inmv8"]
+radius = 169.0
+height = 898.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_48up8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lflrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-110, 0)
+shape = SubResource("CapsuleShape2D_inmv8")
