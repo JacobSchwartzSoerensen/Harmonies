@@ -1,22 +1,215 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpu5v8eh20i7u"]
+[gd_scene load_steps=26 format=3 uid="uid://cpu5v8eh20i7u"]
 
 [ext_resource type="PackedScene" uid="uid://ceu4dncl3d37n" path="res://scenes/player.tscn" id="1_4vix0"]
+[ext_resource type="Script" path="res://scripts/GameManager.cs" id="1_naiak"]
 [ext_resource type="PackedScene" uid="uid://ca4ujagx516qn" path="res://scenes/platform_grass.tscn" id="2_pqklf"]
+[ext_resource type="PackedScene" uid="uid://s536dedyqqbc" path="res://scenes/stone.tscn" id="3_q586u"]
+[ext_resource type="Texture2D" uid="uid://btkx72mkyu7w6" path="res://assets/sprites/stone_earth_off.png" id="4_8q3xn"]
+[ext_resource type="Texture2D" uid="uid://culqnm5y7cwtx" path="res://assets/sprites/stone_earth_on.png" id="5_u5tlr"]
+[ext_resource type="AudioStream" uid="uid://de5lbvgcnx4el" path="res://assets/sounds/c_major_notes.mp3" id="6_263r6"]
+[ext_resource type="AudioStream" uid="uid://tub3wte56jfh" path="res://assets/sounds/c_major.mp3" id="7_wd5m2"]
+[ext_resource type="Texture2D" uid="uid://buun6r625lsob" path="res://assets/sprites/stone_fire_off.png" id="8_8vw2n"]
+[ext_resource type="Texture2D" uid="uid://c1bl0rjey8rqb" path="res://assets/sprites/stone_fire_on.png" id="9_rsmvu"]
+[ext_resource type="AudioStream" uid="uid://b3srddlxas6qu" path="res://assets/sounds/d_minor_notes.mp3" id="10_a7jp0"]
+[ext_resource type="AudioStream" uid="uid://cmp8av6r5107f" path="res://assets/sounds/d_minor.mp3" id="11_cmmcd"]
+[ext_resource type="Texture2D" uid="uid://6xf4f21v3dei" path="res://assets/sprites/stone_water_off.png" id="12_8ikcl"]
+[ext_resource type="Texture2D" uid="uid://cmuljsjqkb0wt" path="res://assets/sprites/stone_water_on.png" id="13_jhfjo"]
+[ext_resource type="AudioStream" uid="uid://b2eknqs3ieftp" path="res://assets/sounds/f_major_notes.mp3" id="14_q1rt8"]
+[ext_resource type="AudioStream" uid="uid://cexmtj27pak4o" path="res://assets/sounds/f_major.mp3" id="15_8to66"]
+[ext_resource type="AudioStream" uid="uid://d0deh0qtcoi3g" path="res://assets/sounds/g_major_notes.mp3" id="16_o3mgs"]
+[ext_resource type="AudioStream" uid="uid://crdxde8j05bti" path="res://assets/sounds/g_major.mp3" id="17_up7h1"]
+[ext_resource type="Texture2D" uid="uid://cucyllmxxj8tm" path="res://assets/sprites/stone_wind_off.png" id="18_wfhbt"]
+[ext_resource type="Texture2D" uid="uid://biugyqf03qxqj" path="res://assets/sprites/stone_wind_on.png" id="19_ugb2t"]
+[ext_resource type="Texture2D" uid="uid://hfgtw0i6t6h" path="res://assets/sprites/black.png" id="21_3hngq"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3crph"]
-distance = -30.0
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_01any"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fcqre"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v105l"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_lvoqd"]
+font_size = 200
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_4vix0")]
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_naiak")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-1019, 94)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_01any")
+
+[node name="Player" parent="." instance=ExtResource("1_4vix0")]
+position = Vector2(-884, 67)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(4, 4)
+
+[node name="PlatformGrass" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(180, -83)
+
+[node name="Stone earth" parent="." instance=ExtResource("3_q586u")]
+position = Vector2(337, -638)
+Melody = "135"
+
+[node name="off" type="Sprite2D" parent="Stone earth"]
+texture = ExtResource("4_8q3xn")
+
+[node name="on" type="Sprite2D" parent="Stone earth"]
+texture = ExtResource("5_u5tlr")
+
+[node name="notes" type="AudioStreamPlayer2D" parent="Stone earth"]
+stream = ExtResource("6_263r6")
+
+[node name="chord" type="AudioStreamPlayer2D" parent="Stone earth"]
+stream = ExtResource("7_wd5m2")
+
+[node name="Stone fire" parent="." instance=ExtResource("3_q586u")]
+position = Vector2(-617, 87)
+Melody = "246"
+
+[node name="off" type="Sprite2D" parent="Stone fire"]
+texture = ExtResource("8_8vw2n")
+
+[node name="on" type="Sprite2D" parent="Stone fire"]
+texture = ExtResource("9_rsmvu")
+
+[node name="notes" type="AudioStreamPlayer2D" parent="Stone fire"]
+stream = ExtResource("10_a7jp0")
+
+[node name="chord" type="AudioStreamPlayer2D" parent="Stone fire"]
+stream = ExtResource("11_cmmcd")
+
+[node name="PlatformGrass2" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(-233, -317)
+
+[node name="PlatformGrass3" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(315, -532)
+
+[node name="PlatformGrass4" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(18, 188)
+
+[node name="PlatformGrass5" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(-211, 188)
+
+[node name="PlatformGrass6" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(-441, 188)
+
+[node name="PlatformGrass7" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(-670, 188)
+
+[node name="PlatformGrass8" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(-899, 188)
+
+[node name="PlatformGrass9" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(794, -392)
+
+[node name="PlatformGrass10" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1206, -186)
+
+[node name="PlatformGrass11" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1434, -186)
+
+[node name="Stone" parent="." instance=ExtResource("3_q586u")]
+position = Vector2(1451, -291)
+Melody = "468"
+
+[node name="off" type="Sprite2D" parent="Stone"]
+texture = ExtResource("12_8ikcl")
+
+[node name="on" type="Sprite2D" parent="Stone"]
+texture = ExtResource("13_jhfjo")
+
+[node name="notes" type="AudioStreamPlayer2D" parent="Stone"]
+stream = ExtResource("14_q1rt8")
+
+[node name="chord" type="AudioStreamPlayer2D" parent="Stone"]
+stream = ExtResource("15_8to66")
+
+[node name="PlatformGrass12" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1163, 188)
+
+[node name="PlatformGrass13" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(934, 188)
+
+[node name="PlatformGrass14" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(704, 188)
+
+[node name="PlatformGrass15" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(475, 188)
+
+[node name="PlatformGrass16" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(246, 188)
+
+[node name="PlatformGrass17" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(2309, 188)
+
+[node name="PlatformGrass18" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(2080, 188)
+
+[node name="PlatformGrass19" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1850, 188)
+
+[node name="PlatformGrass20" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1621, 188)
+
+[node name="PlatformGrass21" parent="." instance=ExtResource("2_pqklf")]
+position = Vector2(1392, 188)
+
+[node name="Stone2" parent="." instance=ExtResource("3_q586u")]
+position = Vector2(2285, 81)
+Melody = "579"
+
+[node name="notes" type="AudioStreamPlayer2D" parent="Stone2"]
+stream = ExtResource("16_o3mgs")
+
+[node name="chord" type="AudioStreamPlayer2D" parent="Stone2"]
+stream = ExtResource("17_up7h1")
+
+[node name="off" type="Sprite2D" parent="Stone2"]
+texture = ExtResource("18_wfhbt")
+
+[node name="on" type="Sprite2D" parent="Stone2"]
+texture = ExtResource("19_ugb2t")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(7, 153)
-shape = SubResource("WorldBoundaryShape2D_3crph")
+position = Vector2(2429, 91)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_fcqre")
 
-[node name="PlatformGrass" parent="." instance=ExtResource("2_pqklf")]
-position = Vector2(180, -83)
+[node name="Label" type="Label" parent="."]
+offset_left = -851.0
+offset_top = -175.0
+offset_right = -364.0
+offset_bottom = -98.0
+text = "Listen to the notes and play them back
+using the number keys."
+label_settings = SubResource("LabelSettings_v105l")
+horizontal_alignment = 1
+
+[node name="end_screen" type="Node2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+position = Vector2(2418, -443)
+
+[node name="Sprite2D" type="Sprite2D" parent="end_screen"]
+position = Vector2(2761, -716.001)
+scale = Vector2(40540, 28952)
+texture = ExtResource("21_3hngq")
+
+[node name="Label2" type="Label" parent="end_screen"]
+offset_left = -508.0
+offset_top = 297.0
+offset_right = 266.0
+offset_bottom = 570.0
+text = "The end"
+label_settings = SubResource("LabelSettings_lvoqd")

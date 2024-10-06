@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://s536dedyqqbc"]
+
+[ext_resource type="Script" path="res://scripts/Stone.cs" id="1_6gor5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvonv"]
+radius = 729.083
+
+[node name="Stone" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_6gor5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1)
+shape = SubResource("CircleShape2D_cvonv")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]
