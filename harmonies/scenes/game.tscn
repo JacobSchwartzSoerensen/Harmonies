@@ -213,3 +213,11 @@ offset_right = 266.0
 offset_bottom = 570.0
 text = "The end"
 label_settings = SubResource("LabelSettings_lvoqd")
+
+[node name="Label" type="Label" parent="end_screen"]
+offset_left = -226.0
+offset_top = 541.0
+offset_right = -39.0
+offset_bottom = 590.0
+text = "Made using Godot
+godotengine.org/license"
